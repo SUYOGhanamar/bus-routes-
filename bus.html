@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EasyCommute Admin Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='bus.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/css/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <i class="fas fa-bus"></i>
+          <span>EasyCommute</span>
+        </div>
+        <button class="toggle-sidebar" id="toggle-sidebar">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <nav class="sidebar-menu">
+        <ul>
+          <li class="menu-item active" data-page="dashboard">
+            <a href="#">
+              <i class="fas fa-tachometer-alt"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="menu-item" data-page="bookings">
+            <a href="#">
+              <i class="fas fa-ticket-alt"></i>
+              <span>Bookings</span>
+            </a>
+          </li>
+          <li class="menu-item" data-page="routes">
+            <a href="#">
+              <i class="fas fa-route"></i>
+              <span>Routes</span>
+            </a>
+          </li>
+          <li class="menu-item" data-page="users">
+            <a href="#">
+              <i class="fas fa-users"></i>
+              <span>Users</span>
+            </a>
+          </li>
+          <li class="menu-item" data-page="reports">
+            <a href="#">
+              <i class="fas fa-chart-line"></i>
+              <span>Reports</span>
+            </a>
+          </li>
+          <li class="menu-item" data-page="settings">
+            <a href="#">
+              <i class="fas fa-cog"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="#" class="help-link">
+          <i class="fas fa-question-circle"></i>
+          <span>Help Center</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Top Navigation -->
+      <header class="top-nav">
+        <div class="nav-left">
+          <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search...">
+          </div>
+        </div>
+        <div class="nav-right">
+          <div class="notification-bell">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span>
+          </div>
+          <div class="user-profile">
+            <img src="https://i.pravatar.cc/150?img=13" alt="Admin User">
+            <div class="user-info">
+              <p class="user-name">Anil Kumar</p>
+              <p class="user-role">Administrator</p>
+            </div>
+            <i class="fas fa-chevron-down"></i>
+            <div class="dropdown-menu">
+              <a href="#"><i class="fas fa-user-circle"></i> My Profile</a>
+              <a href="#"><i class="fas fa-cog"></i> Account Settings</a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div class="page-content">
+        <!-- Dashboard Page -->
+        <section id="dashboard" class="page active">
+          <div class="page-header">
+            <h1>Dashboard</h1>
+            <div class="date-filter">
+              <i class="fas fa-calendar"></i>
+              <select>
+                <option>Today</option>
+                <option>Yesterday</option>
+                <option>Last 7 days</option>
+                <option>Last 30 days</option>
+                <option>This Month</option>
+                <option>Custom Range</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="stats-cards">
+            <div class="stat-card">
+              <div class="stat-card-content">
+                <div class="stat-card-info">
+                  <h2>Total Bookings</h2>
+                  <p class="stat-value">3,459</p>
+                  <p class="stat-change positive"><i class="fas fa-arrow-up"></i> 12.5% from last week</p>
+                </div>
+                <div class="stat-card-icon blue">
+                  <i class="fas fa-ticket-alt"></i>
+                </div>
+              </div>
+              <div class="stat-card-footer">
+                <span>Updated 2 hours ago</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-content">
+                <div class="stat-card-info">
+                  <h2>Available Routes</h2>
+                  <p class="stat-value">186</p>
+                  <p class="stat-change positive"><i class="fas fa-arrow-up"></i> 4.3% from last week</p>
+                </div>
+                <div class="stat-card-icon green">
+                  <i class="fas fa-route"></i>
+                </div>
+              </div>
+              <div class="stat-card-footer">
+                <span>Updated 2 hours ago</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-content">
+                <div class="stat-card-info">
+                  <h2>Revenue Today</h2>
+                  <p class="stat-value">₹75,210</p>
+                  <p class="stat-change positive"><i class="fas fa-arrow-up"></i> 8.2% from yesterday</p>
+                </div>
+                <div class="stat-card-icon purple">
+                  <i class="fas fa-rupee-sign"></i>
+                </div>
+              </div>
+              <div class="stat-card-footer">
+                <span>Updated just now</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-content">
+                <div class="stat-card-info">
+                  <h2>Active Buses</h2>
+                  <p class="stat-value">48</p>
+                  <p class="stat-change negative"><i class="fas fa-arrow-down"></i> 2.1% from yesterday</p>
+                </div>
+                <div class="stat-card-icon orange">
+                  <i class="fas fa-bus"></i>
+                </div>
+              </div>
+              <div class="stat-card-footer">
+                <span>Live tracking enabled</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="dashboard-grid">
+            <div class="revenue-chart card">
+              <div class="card-header">
+                <h2>Revenue Trends</h2>
+                <div class="card-options">
+                  <button class="active" data-chart-period="weekly">Weekly</button>
+                  <button data-chart-period="monthly">Monthly</button>
+                  <button data-chart-period="yearly">Yearly</button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="revenueChart"></canvas>
+              </div>
+            </div>
+            
+            <div class="notifications-panel card">
+              <div class="card-header">
+                <h2>Recent Notifications</h2>
+                <a href="#" class="view-all">View All</a>
+              </div>
+              <div class="card-body">
+                <div class="notification-list">
+                  <div class="notification-item">
+                    <div class="notification-icon booking">
+                      <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <div class="notification-content">
+                      <p class="notification-title">New Booking #BK8276</p>
+                      <p class="notification-desc">Mumbai to Pune, 2 passengers</p>
+                      <p class="notification-time">10 minutes ago</p>
+                    </div>
+                    <button class="notification-action"><i class="fas fa-ellipsis-v"></i></button>
+                  </div>
+                  
+                  <div class="notification-item">
+                    <div class="notification-icon support">
+                      <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="notification-content">
+                      <p class="notification-title">Support Request #SR1432</p>
+                      <p class="notification-desc">Refund request for booking #BK8245</p>
+                      <p class="notification-time">42 minutes ago</p>
+                    </div>
+                    <button class="notification-action"><i class="fas fa-ellipsis-v"></i></button>
+                  </div>
+                  
+                  <div class="notification-item">
+                    <div class="notification-icon alert">
+                      <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="notification-content">
+                      <p class="notification-title">Bus Delay Alert</p>
+                      <p class="notification-desc">Bus KA-01-F-3474 delayed by 30 minutes</p>
+                      <p class="notification-time">1 hour ago</p>
+                    </div>
+                    <button class="notification-action"><i class="fas fa-ellipsis-v"></i></button>
+                  </div>
+                  
+                  <div class="notification-item">
+                    <div class="notification-icon success">
+                      <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="notification-content">
+                      <p class="notification-title">Route Added Successfully</p>
+                      <p class="notification-desc">New route Bangalore to Mysore added</p>
+                      <p class="notification-time">3 hours ago</p>
+                    </div>
+                    <button class="notification-action"><i class="fas fa-ellipsis-v"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="recent-bookings card">
+              <div class="card-header">
+                <h2>Recent Bookings</h2>
+                <a href="#" class="view-all" id="view-all-bookings">View All</a>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th>Booking ID</th>
+                        <th>Customer</th>
+                        <th>Route</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>#BK8276</td>
+                        <td>Arun Sharma</td>
+                        <td>Mumbai → Pune</td>
+                        <td>Today, 14:30</td>
+                        <td>₹580</td>
+                        <td><span class="status-badge confirmed">Confirmed</span></td>
+                      </tr>
+                      <tr>
+                        <td>#BK8275</td>
+                        <td>Priya Patel</td>
+                        <td>Delhi → Jaipur</td>
+                        <td>Today, 13:15</td>
+                        <td>₹1,250</td>
+                        <td><span class="status-badge confirmed">Confirmed</span></td>
+                      </tr>
+                      <tr>
+                        <td>#BK8274</td>
+                        <td>Rahul Gupta</td>
+                        <td>Bangalore → Chennai</td>
+                        <td>Today, 10:45</td>
+                        <td>₹950</td>
+                        <td><span class="status-badge processing">Processing</span></td>
+                      </tr>
+                      <tr>
+                        <td>#BK8273</td>
+                        <td>Neha Singh</td>
+                        <td>Kolkata → Patna</td>
+                        <td>Yesterday, 16:30</td>
+                        <td>₹1,100</td>
+                        <td><span class="status-badge confirmed">Confirmed</span></td>
+                      </tr>
+                      <tr>
+                        <td>#BK8272</td>
+                        <td>Vikram Reddy</td>
+                        <td>Hyderabad → Vijayawada</td>
+                        <td>Yesterday, 12:15</td>
+                        <td>₹850</td>
+                        <td><span class="status-badge cancelled">Cancelled</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            
+            <div class="route-performance card">
+              <div class="card-header">
+                <h2>Top Routes by Revenue</h2>
+              </div>
+              <div class="card-body">
+                <canvas id="routesChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Bookings Page -->
+        <section id="bookings" class="page">
+          <div class="page-header">
+            <h1>Booking Management</h1>
+            <button class="btn-primary">
+              <i class="fas fa-plus"></i> New Booking
+            </button>
+          </div>
+          
+          <div class="card">
+            <div class="card-body">
+              <div class="filter-container">
+                <div class="search-container large">
+                  <i class="fas fa-search"></i>
+                  <input type="text" id="booking-search" placeholder="Search bookings by ID, customer name, or route">
+                </div>
+                <div class="filter-controls">
+                  <div class="filter-item">
+                    <label for="status-filter">Status</label>
+                    <select id="status-filter">
+                      <option value="">All Statuses</option>
+                      <option value="confirmed">Confirmed</option>
+                      <option value="processing">Processing</option>
+                      <option value="cancelled">Cancelled</option>
+                      <option value="completed">Completed</option>
+                    </select>
+                  </div>
+                  <div class="filter-item">
+                    <label for="date-filter">Date Range</label>
+                    <input type="date" id="date-filter">
+                  </div>
+                  <button class="btn-outline" id="reset-filters">
+                    <i class="fas fa-redo-alt"></i> Reset
+                  </button>
+                </div>
+              </div>
+              
+              <div class="table-responsive">
+                <table class="data-table bookings-table">
+                  <thead>
+                    <tr>
+                      <th><input type="checkbox" class="select-all"></th>
+                      <th>Booking ID <i class="fas fa-sort"></i></th>
+                      <th>Customer <i class="fas fa-sort"></i></th>
+                      <th>Route <i class="fas fa-sort"></i></th>
+                      <th>Travel Date <i class="fas fa-sort"></i></th>
+                      <th>Booking Date <i class="fas fa-sort"></i></th>
+                      <th>Passengers <i class="fas fa-sort"></i></th>
+                      <th>Amount <i class="fas fa-sort"></i></th>
+                      <th>Status <i class="fas fa-sort"></i></th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><input type="checkbox" class="select-row"></td>
+                      <td>#BK8276</td>
+                      <td>Arun Sharma</td>
+                      <td>Mumbai → Pune</td>
+                      <td>May 12, 2025</td>
+                      <td>May 10, 2025</td>
+                      <td>2</td>
+                      <td>₹580</td>
+                      <td><span class="status-badge confirmed">Confirmed</span></td>
+                      <td class="actions-cell">
+                        <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit-btn" title="Edit Booking"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn" title="Cancel Booking"><i class="fas fa-trash"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" class="select-row"></td>
+                      <td>#BK8275</td>
+                      <td>Priya Patel</td>
+                      <td>Delhi → Jaipur</td>
+                      <td>May 15, 2025</td>
+                      <td>May 10, 2025</td>
+                      <td>3</td>
+                      <td>₹1,250</td>
+                      <td><span class="status-badge confirmed">Confirmed</span></td>
+                      <td class="actions-cell">
+                        <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit-btn" title="Edit Booking"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn" title="Cancel Booking"><i class="fas fa-trash"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" class="select-row"></td>
+                      <td>#BK8274</td>
+                      <td>Rahul Gupta</td>
+                      <td>Bangalore → Chennai</td>
+                      <td>May 12, 2025</td>
+                      <td>May 10, 2025</td>
+                      <td>1</td>
+                      <td>₹950</td>
+                      <td><span class="status-badge processing">Processing</span></td>
+                      <td class="actions-cell">
+                        <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit-btn" title="Edit Booking"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn" title="Cancel Booking"><i class="fas fa-trash"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" class="select-row"></td>
+                      <td>#BK8273</td>
+                      <td>Neha Singh</td>
+                      <td>Kolkata → Patna</td>
+                      <td>May 11, 2025</td>
+                      <td>May 9, 2025</td>
+                      <td>2</td>
+                      <td>₹1,100</td>
+                      <td><span class="status-badge confirmed">Confirmed</span></td>
+                      <td class="actions-cell">
+                        <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit-btn" title="Edit Booking"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn" title="Cancel Booking"><i class="fas fa-trash"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" class="select-row"></td>
+                      <td>#BK8272</td>
+                      <td>Vikram Reddy</td>
+                      <td>Hyderabad → Vijayawada</td>
+                      <td>May 10, 2025</td>
+                      <td>May 8, 2025</td>
+                      <td>1</td>
+                      <td>₹850</td>
+                      <td><span class="status-badge cancelled">Cancelled</span></td>
+                      <td class="actions-cell">
+                        <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit-btn" title="Edit Booking"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn" title="Cancel Booking"><i class="fas fa-trash"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" class="select-row"></td>
+                      <td>#BK8271</td>
+                      <td>Kiran Kumar</td>
+                      <td>Chennai → Coimbatore</td>
+                      <td>May 14, 2025</td>
+                      <td>May 8, 2025</td>
+                      <td>4</td>
+                      <td>₹1,400</td>
+                      <td><span class="status-badge confirmed">Confirmed</span></td>
+                      <td class="actions-cell">
+                        <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit-btn" title="Edit Booking"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn" title="Cancel Booking"><i class="fas fa-trash"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" class="select-row"></td>
+                      <td>#BK8270</td>
+                      <td>Smita Joshi</td>
+                      <td>Pune → Nagpur</td>
+                      <td>May 16, 2025</td>
+                      <td>May 8, 2025</td>
+                      <td>2</td>
+                      <td>₹1,200</td>
+                      <td><span class="status-badge confirmed">Confirmed</span></td>
+                      <td class="actions-cell">
+                        <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit-btn" title="Edit Booking"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn" title="Cancel Booking"><i class="fas fa-trash"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" class="select-row"></td>
+                      <td>#BK8269</td>
+                      <td>Amit Verma</td>
+                      <td>Lucknow → Delhi</td>
+                      <td>May 12, 2025</td>
+                      <td>May 7, 2025</td>
+                      <td>1</td>
+                      <td>₹980</td>
+                      <td><span class="status-badge completed">Completed</span></td>
+                      <td class="actions-cell">
+                        <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit-btn" title="Edit Booking"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn" title="Cancel Booking"><i class="fas fa-trash"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" class="select-row"></td>
+                      <td>#BK8268</td>
+                      <td>Sonia Kapoor</td>
+                      <td>Mumbai → Goa</td>
+                      <td>May 18, 2025</td>
+                      <td>May 7, 2025</td>
+                      <td>2</td>
+                      <td>₹1,500</td>
+                      <td><span class="status-badge confirmed">Confirmed</span></td>
+                      <td class="actions-cell">
+                        <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit-btn" title="Edit Booking"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn" title="Cancel Booking"><i class="fas fa-trash"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" class="select-row"></td>
+                      <td>#BK8267</td>
+                      <td>Arjun Nair</td>
+                      <td>Kochi → Bangalore</td>
+                      <td>May 13, 2025</td>
+                      <td>May 6, 2025</td>
+                      <td>3</td>
+                      <td>₹1,350</td>
+                      <td><span class="status-badge processing">Processing</span></td>
+                      <td class="actions-cell">
+                        <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit-btn" title="Edit Booking"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn" title="Cancel Booking"><i class="fas fa-trash"></i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div class="pagination-container">
+                <div class="pagination-info">Showing 1 to 10 of 120 entries</div>
+                <div class="pagination">
+                  <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i> Previous</button>
+                  <button class="pagination-btn page-number active">1</button>
+                  <button class="pagination-btn page-number">2</button>
+                  <button class="pagination-btn page-number">3</button>
+                  <button class="pagination-btn page-number">4</button>
+                  <button class="pagination-btn">Next <i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="pagination-size">
+                  <label for="rows-per-page">Rows per page:</label>
+                  <select id="rows-per-page">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Routes Page -->
+        <section id="routes" class="page">
+          <div class="page-header">
+            <h1>Route Management</h1>
+            <button class="btn-primary" id="add-route-btn">
+              <i class="fas fa-plus"></i> Add New Route
+            </button>
+          </div>
+          
+          <!-- Map Section -->
+          <div class="card map-card">
+            <div class="card-header">
+              <h2>Route Map</h2>
+              <div class="map-controls">
+                <div class="search-container">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <input type="text" id="route-search" placeholder="Search location">
+                </div>
+                <button class="btn-outline" id="current-location">
+                  <i class="fas fa-crosshairs"></i> My Location
+                </button>
+              </div>
+            </div>
+            <div class="card-body map-container">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30765978.00238801!2d61.00083698256397!3d19.729113061269324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1854213a6!2sIndia!5e0!3m2!1sen!2sin!4v1745853655505!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+
+          <!-- Route Planning Form -->
+          <div class="route-planning-form" id="route-planning-form">
+            <div class="card">
+              <div class="card-header">
+                <h2>Plan Your Journey</h2>
+                <button class="btn-text" id="close-route-planning">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+              <div class="card-body">
+                <form id="journey-form" method="POST" action="/submit_journey">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="source">Source Location</label>
+                      <div class="form-input-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <input type="text" id="source" placeholder="Enter source location" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="destination">Destination</label>
+                      <div class="form-input-icon">
+                        <i class="fas fa-map-pin"></i>
+                        <input type="text" id="destination" placeholder="Enter destination" required>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="journey-travel-date">Travel Date</label>
+                      <div class="form-input-icon">
+                        <i class="fas fa-calendar"></i>
+                        <input type="date" id="journey-travel-date" name="travel_date" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="passengers">Number of Passengers</label>
+                      <div class="form-input-icon">
+                        <i class="fas fa-users"></i>
+                        <input type="number" id="passengers" min="1" max="10" value="1" required>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="form-actions">
+                    <button type="submit" class="login-btn">Login</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            
+            <div class="search-results" id="search-results">
+              <div class="card">
+                <div class="card-header">
+                  <h2>Available Buses</h2>
+                  <div class="route-info">
+                    <p><strong>Mumbai → Pune</strong> · <span>148 km</span> · <span>5 buses found</span></p>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="bus-result-filters">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">AC</button>
+                    <button class="filter-btn">Non-AC</button>
+                    <button class="filter-btn">Sleeper</button>
+                    <button class="filter-btn">Seater</button>
+                    <div class="filter-sort">
+                      <label for="sort-by">Sort by:</label>
+                      <select id="sort-by">
+                        <option value="departure">Departure Time</option>
+                        <option value="duration">Duration</option>
+                        <option value="price">Price</option>
+                        <option value="seats">Available Seats</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div class="bus-results">
+                    <div class="bus-result-card">
+                      <div class="bus-info">
+                        <h3 class="bus-name">KSRTC Swift Scania P-series</h3>
+                        <p class="bus-type">AC Sleeper (2+1)</p>
+                      </div>
+                      <div class="bus-timing">
+                        <div class="departure">
+                          <p class="time">06:00</p>
+                          <p class="place">Mumbai</p>
+                          <p class="date">12 May</p>
+                        </div>
+                        <div class="duration">
+                          <p class="hours">3h 30m</p>
+                          <div class="duration-line"></div>
+                        </div>
+                        <div class="arrival">
+                          <p class="time">09:30</p>
+                          <p class="place">Pune</p>
+                          <p class="date">12 May</p>
+                        </div>
+                      </div>
+                      <div class="bus-amenities">
+                        <span class="amenity"><i class="fas fa-wifi"></i> WiFi</span>
+                        <span class="amenity"><i class="fas fa-plug"></i> Charging Point</span>
+                        <span class="amenity"><i class="fas fa-film"></i> Entertainment</span>
+                      </div>
+                      <div class="bus-pricing">
+                        <p class="price">₹650</p>
+                        <p class="seats">18 seats left</p>
+                        <button class="btn-primary">Select Seats</button>
+                      </div>
+                    </div>
+                    
+                    <div class="bus-result-card">
+                      <div class="bus-info">
+                        <h3 class="bus-name">KSRTC Karnataka Sarige</h3>
+                        <p class="bus-type">Non-AC Seater</p>
+                      </div>
+                      <div class="bus-timing">
+                        <div class="departure">
+                          <p class="time">07:30</p>
+                          <p class="place">Mumbai</p>
+                          <p class="date">12 May</p>
+                        </div>
+                        <div class="duration">
+                          <p class="hours">3h 45m</p>
+                          <div class="duration-line"></div>
+                        </div>
+                        <div class="arrival">
+                          <p class="time">11:15</p>
+                          <p class="place">Pune</p>
+                          <p class="date">12 May</p>
+                        </div>
+                      </div>
+                      <div class="bus-amenities">
+                        <span class="amenity"><i class="fas fa-snowflake"></i> Water Bottle</span>
+                        <span class="amenity"><i class="fas fa-couch"></i> Comfortable Seats</span>
+                      </div>
+                      <div class="bus-pricing">
+                        <p class="price">₹450</p>
+                        <p class="seats">24 seats left</p>
+                        <button class="btn-primary">Select Seats</button>
+                      </div>
+                    </div>
+                    
+                    <div class="bus-result-card">
+                      <div class="bus-info">
+                        <h3 class="bus-name">KSRTC Airavat Club Class</h3>
+                        <p class="bus-type">AC Multi-Axle Semi Sleeper</p>
+                      </div>
+                      <div class="bus-timing">
+                        <div class="departure">
+                          <p class="time">08:45</p>
+                          <p class="place">Mumbai</p>
+                          <p class="date">12 May</p>
+                        </div>
+                        <div class="duration">
+                          <p class="hours">3h 15m</p>
+                          <div class="duration-line"></div>
+                        </div>
+                        <div class="arrival">
+                          <p class="time">12:00</p>
+                          <p class="place">Pune</p>
+                          <p class="date">12 May</p>
+                        </div>
+                      </div>
+                      <div class="bus-amenities">
+                        <span class="amenity"><i class="fas fa-wifi"></i> WiFi</span>
+                        <span class="amenity"><i class="fas fa-plug"></i> Charging Point</span>
+                        <span class="amenity"><i class="fas fa-utensils"></i> Snacks</span>
+                        <span class="amenity"><i class="fas fa-toilet"></i> Toilet</span>
+                      </div>
+                      <div class="bus-pricing">
+                        <p class="price">₹750</p>
+                        <p class="seats">6 seats left</p>
+                        <button class="btn-primary">Select Seats</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Routes Table -->
+          <div class="card">
+            <div class="card-header">
+              <h2>All Routes</h2>
+              <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" id="routes-search" placeholder="Search routes">
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="data-table routes-table">
+                  <thead>
+                    <tr>
+                      <th><input type="checkbox" class="select-all"></th>
+                      <th>Route ID <i class="fas fa-sort"></i></th>
+                      <th>Source <i class="fas fa-sort"></i></th>
+                      <th>Destination <i class="fas fa-sort"></i></th>
+                      <th>Distance <i class="fas fa-sort"></i></th>
+                      <th>Duration <i class="fas fa-sort"></i></th>
+                      <th>Buses <i class="fas fa-sort"></i></th>
+                      <th>Fare <i class="fas fa-sort"></i></th>
+                      <th>Status <i class="fas fa-sort"></i></th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><input type="checkbox" class="select-row"></td>
+                      <td>#RT101</td>
+                      <td>Mumbai</td>
+                      <td>Pune</td>
+                      <td>148 km</td>
+                      <td>3h 30m</td>
+                      <td>8</td>
+                      <td>₹450-750</td>
+                      <td><span class="status-badge active">Active</span></td>
+                      <td class="actions-cell">
+                        <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit-btn" title="Edit Route"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn" title="Delete Route"><i class="fas fa-trash"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" class="select-row"></td>
+                      <td>#RT102</td>
+                      <td>Delhi</td>
+                      <td>Jaipur</td>
+                      <td>281 km</td>
+                      <td>5h 15m</td>
+                      <td>12</td>
+                      <td>₹650-1200</td>
+                      <td><span class="status-badge active">Active</span></td>
+                      <td class="actions-cell">
+                        <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit-btn" title="Edit Route"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn" title="Delete Route"><i class="fas fa-trash"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" class="select-row"></td>
+                      <td>#RT103</td>
+                      <td>Bangalore</td>
+                      <td>Chennai</td>
+                      <td>346 km</td>
+                      <td>6h 30m</td>
+                      <td>10</td>
+                      <td>₹750-1350</td>
+                      <td><span class="status-badge active">Active</span></td>
+                      <td class="actions-cell">
+                        <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit-btn" title="Edit Route"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn" title="Delete Route"><i class="fas fa-trash"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" class="select-row"></td>
+                      <td>#RT104</td>
+                      <td>Kolkata</td>
+                      <td>Patna</td>
+                      <td>556 km</td>
+                      <td>9h 45m</td>
+                      <td>6</td>
+                      <td>₹950-1600</td>
+                      <td><span class="status-badge active">Active</span></td>
+                      <td class="actions-cell">
+                        <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit-btn" title="Edit Route"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn" title="Delete Route"><i class="fas fa-trash"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" class="select-row"></td>
+                      <td>#RT105</td>
+                      <td>Hyderabad</td>
+                      <td>Vijayawada</td>
+                      <td>270 km</td>
+                      <td>5h</td>
+                      <td>7</td>
+                      <td>₹600-1100</td>
+                      <td><span class="status-badge active">Active</span></td>
+                      <td class="actions-cell">
+                        <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit-btn" title="Edit Route"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn" title="Delete Route"><i class="fas fa-trash"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" class="select-row"></td>
+                      <td>#RT106</td>
+                      <td>Chennai</td>
+                      <td>Coimbatore</td>
+                      <td>506 km</td>
+                      <td>8h 15m</td>
+                      <td>5</td>
+                      <td>₹850-1400</td>
+                      <td><span class="status-badge inactive">Inactive</span></td>
+                      <td class="actions-cell">
+                        <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit-btn" title="Edit Route"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn" title="Delete Route"><i class="fas fa-trash"></i></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" class="select-row"></td>
+                      <td>#RT107</td>
+                      <td>Pune</td>
+                      <td>Nagpur</td>
+                      <td>706 km</td>
+                      <td>12h</td>
+                      <td>4</td>
+                      <td>₹1100-1800</td>
+                      <td><span class="status-badge active">Active</span></td>
+                      <td class="actions-cell">
+                        <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit-btn" title="Edit Route"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete-btn" title="Delete Route"><i class="fas fa-trash"></i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div class="pagination-container">
+                <div class="pagination-info">Showing 1 to 7 of 48 entries</div>
+                <div class="pagination">
+                  <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i> Previous</button>
+                  <button class="pagination-btn page-number active">1</button>
+                  <button class="pagination-btn page-number">2</button>
+                  <button class="pagination-btn page-number">3</button>
+                  <button class="pagination-btn page-number">4</button>
+                  <button class="pagination-btn">Next <i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="pagination-size">
+                  <label for="routes-per-page">Rows per page:</label>
+                  <select id="routes-per-page">
+                    <option value="7">7</option>
+                    <option value="15">15</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add/Edit Route Modal -->
+          <div class="modal" id="route-modal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2 id="route-modal-title">Add New Route</h2>
+                <button class="modal-close" id="close-route-modal"><i class="fas fa-times"></i></button>
+              </div>
+              <div class="modal-body">
+                <form id="route-form">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="route-source">Source Location*</label>
+                      <input type="text" id="route-source" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="route-destination">Destination*</label>
+                      <input type="text" id="route-destination" required>
+                    </div>
+                  </div>
+                  
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="route-distance">Distance (km)*</label>
+                      <input type="number" id="route-distance" min="1" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="route-duration-hours">Duration (hours)*</label>
+                      <input type="number" id="route-duration-hours" min="0" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="route-duration-minutes">Duration (minutes)*</label>
+                      <input type="number" id="route-duration-minutes" min="0" max="59" required>
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="route-min-fare">Minimum Fare (₹)*</label>
+                      <input type="number" id="route-min-fare" min="0" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="route-max-fare">Maximum Fare (₹)*</label>
+                      <input type="number" id="route-max-fare" min="0" required>
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="route-status">Status*</label>
+                      <select id="route-status" required>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="route-description">Description</label>
+                      <textarea id="route-description" rows="3"></textarea>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button class="btn-outline" id="cancel-route">Cancel</button>
+                <button class="btn-primary" id="save-route">Save Route</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Users Page -->
+        <section id="users" class="page">
+          <div class="page-header">
+            <h1>User Management</h1>
+            <div class="page-actions">
+              <button class="btn-outline">
+                <i class="fas fa-file-export"></i> Export
+              </button>
+              <button class="btn-primary">
+                <i class="fas fa-plus"></i> New User
+              </button>
+            </div>
+          </div>
+          
+          <div class="user-tabs">
+            <button class="tab-btn active" data-tab="passengers">Passengers</button>
+            <button class="tab-btn" data-tab="operators">Bus Operators</button>
+            <button class="tab-btn" data-tab="staff">Staff</button>
+          </div>
+          
+          <div class="tab-content active" id="passengers-tab">
+            <div class="card">
+              <div class="card-body">
+                <div class="filter-container">
+                  <div class="search-container large">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search passengers">
+                  </div>
+                  <div class="filter-controls">
+                    <div class="filter-item">
+                      <label for="status-filter-users">Status</label>
+                      <select id="status-filter-users">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="blocked">Blocked</option>
+                      </select>
+                    </div>
+                    <button class="btn-outline">
+                      <i class="fas fa-filter"></i> More Filters
+                    </button>
+                  </div>
+                </div>
+                
+                <div class="table-responsive">
+                  <table class="data-table users-table">
+                    <thead>
+                      <tr>
+                        <th><input type="checkbox" class="select-all"></th>
+                        <th>User ID <i class="fas fa-sort"></i></th>
+                        <th>Name <i class="fas fa-sort"></i></th>
+                        <th>Email <i class="fas fa-sort"></i></th>
+                        <th>Mobile <i class="fas fa-sort"></i></th>
+                        <th>Bookings <i class="fas fa-sort"></i></th>
+                        <th>Joined <i class="fas fa-sort"></i></th>
+                        <th>Status <i class="fas fa-sort"></i></th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><input type="checkbox" class="select-row"></td>
+                        <td>#U10045</td>
+                        <td>Arun Sharma</td>
+                        <td>arun.sharma@example.com</td>
+                        <td>+91 9876543210</td>
+                        <td>12</td>
+                        <td>10 Jan 2023</td>
+                        <td><span class="status-badge confirmed">Active</span></td>
+                        <td class="actions-cell">
+                          <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                          <button class="action-btn edit-btn" title="Edit User"><i class="fas fa-edit"></i></button>
+                          <button class="action-btn delete-btn" title="Block User"><i class="fas fa-ban"></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" class="select-row"></td>
+                        <td>#U10044</td>
+                        <td>Priya Patel</td>
+                        <td>priya.patel@example.com</td>
+                        <td>+91 8765432109</td>
+                        <td>8</td>
+                        <td>15 Feb 2023</td>
+                        <td><span class="status-badge confirmed">Active</span></td>
+                        <td class="actions-cell">
+                          <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                          <button class="action-btn edit-btn" title="Edit User"><i class="fas fa-edit"></i></button>
+                          <button class="action-btn delete-btn" title="Block User"><i class="fas fa-ban"></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" class="select-row"></td>
+                        <td>#U10043</td>
+                        <td>Rahul Gupta</td>
+                        <td>rahul.gupta@example.com</td>
+                        <td>+91 7654321098</td>
+                        <td>5</td>
+                        <td>03 Mar 2023</td>
+                        <td><span class="status-badge confirmed">Active</span></td>
+                        <td class="actions-cell">
+                          <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                          <button class="action-btn edit-btn" title="Edit User"><i class="fas fa-edit"></i></button>
+                          <button class="action-btn delete-btn" title="Block User"><i class="fas fa-ban"></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" class="select-row"></td>
+                        <td>#U10042</td>
+                        <td>Neha Singh</td>
+                        <td>neha.singh@example.com</td>
+                        <td>+91 6543210987</td>
+                        <td>3</td>
+                        <td>22 Mar 2023</td>
+                        <td><span class="status-badge confirmed">Active</span></td>
+                        <td class="actions-cell">
+                          <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                          <button class="action-btn edit-btn" title="Edit User"><i class="fas fa-edit"></i></button>
+                          <button class="action-btn delete-btn" title="Block User"><i class="fas fa-ban"></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" class="select-row"></td>
+                        <td>#U10041</td>
+                        <td>Vikram Reddy</td>
+                        <td>vikram.reddy@example.com</td>
+                        <td>+91 5432109876</td>
+                        <td>7</td>
+                        <td>05 Apr 2023</td>
+                        <td><span class="status-badge cancelled">Blocked</span></td>
+                        <td class="actions-cell">
+                          <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                          <button class="action-btn edit-btn" title="Edit User"><i class="fas fa-edit"></i></button>
+                          <button class="action-btn active-btn" title="Activate User"><i class="fas fa-check-circle"></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" class="select-row"></td>
+                        <td>#U10040</td>
+                        <td>Kiran Kumar</td>
+                        <td>kiran.kumar@example.com</td>
+                        <td>+91 4321098765</td>
+                        <td>15</td>
+                        <td>18 Apr 2023</td>
+                        <td><span class="status-badge confirmed">Active</span></td>
+                        <td class="actions-cell">
+                          <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                          <button class="action-btn edit-btn" title="Edit User"><i class="fas fa-edit"></i></button>
+                          <button class="action-btn delete-btn" title="Block User"><i class="fas fa-ban"></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" class="select-row"></td>
+                        <td>#U10039</td>
+                        <td>Smita Joshi</td>
+                        <td>smita.joshi@example.com</td>
+                        <td>+91 3210987654</td>
+                        <td>4</td>
+                        <td>29 Apr 2023</td>
+                        <td><span class="status-badge inactive">Inactive</span></td>
+                        <td class="actions-cell">
+                          <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                          <button class="action-btn edit-btn" title="Edit User"><i class="fas fa-edit"></i></button>
+                          <button class="action-btn active-btn" title="Activate User"><i class="fas fa-check-circle"></i></button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                
+                <div class="pagination-container">
+                  <div class="pagination-info">Showing 1 to 7 of 243 entries</div>
+                  <div class="pagination">
+                    <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i> Previous</button>
+                    <button class="pagination-btn page-number active">1</button>
+                    <button class="pagination-btn page-number">2</button>
+                    <button class="pagination-btn page-number">3</button>
+                    <button class="pagination-btn page-number">4</button>
+                    <button class="pagination-btn">Next <i class="fas fa-chevron-right"></i></button>
+                  </div>
+                  <div class="pagination-size">
+                    <label for="users-per-page">Rows per page:</label>
+                    <select id="users-per-page">
+                      <option value="7">7</option>
+                      <option value="15">15</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tab-content" id="operators-tab">
+            <div class="card">
+              <div class="card-body">
+                <div class="filter-container">
+                  <div class="search-container large">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search operators">
+                  </div>
+                  <div class="filter-controls">
+                    <div class="filter-item">
+                      <label for="status-filter-operators">Status</label>
+                      <select id="status-filter-operators">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="suspended">Suspended</option>
+                      </select>
+                    </div>
+                    <button class="btn-outline">
+                      <i class="fas fa-filter"></i> More Filters
+                    </button>
+                  </div>
+                </div>
+                
+                <div class="table-responsive">
+                  <table class="data-table operators-table">
+                    <thead>
+                      <tr>
+                        <th><input type="checkbox" class="select-all"></th>
+                        <th>Operator ID <i class="fas fa-sort"></i></th>
+                        <th>Name <i class="fas fa-sort"></i></th>
+                        <th>Buses <i class="fas fa-sort"></i></th>
+                        <th>Routes <i class="fas fa-sort"></i></th>
+                        <th>Rating <i class="fas fa-sort"></i></th>
+                        <th>Joined <i class="fas fa-sort"></i></th>
+                        <th>Status <i class="fas fa-sort"></i></th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><input type="checkbox" class="select-row"></td>
+                        <td>#OP5012</td>
+                        <td>KSRTC</td>
+                        <td>48</td>
+                        <td>32</td>
+                        <td>4.2 <i class="fas fa-star text-warning"></i></td>
+                        <td>10 Jan 2022</td>
+                        <td><span class="status-badge confirmed">Active</span></td>
+                        <td class="actions-cell">
+                          <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                          <button class="action-btn edit-btn" title="Edit Operator"><i class="fas fa-edit"></i></button>
+                          <button class="action-btn delete-btn" title="Suspend Operator"><i class="fas fa-ban"></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" class="select-row"></td>
+                        <td>#OP5011</td>
+                        <td>SRS Travels</td>
+                        <td>35</td>
+                        <td>28</td>
+                        <td>4.5 <i class="fas fa-star text-warning"></i></td>
+                        <td>05 Feb 2022</td>
+                        <td><span class="status-badge confirmed">Active</span></td>
+                        <td class="actions-cell">
+                          <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                          <button class="action-btn edit-btn" title="Edit Operator"><i class="fas fa-edit"></i></button>
+                          <button class="action-btn delete-btn" title="Suspend Operator"><i class="fas fa-ban"></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" class="select-row"></td>
+                        <td>#OP5010</td>
+                        <td>VRL Travels</td>
+                        <td>42</td>
+                        <td>25</td>
+                        <td>4.3 <i class="fas fa-star text-warning"></i></td>
+                        <td>12 Mar 2022</td>
+                        <td><span class="status-badge confirmed">Active</span></td>
+                        <td class="actions-cell">
+                          <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                          <button class="action-btn edit-btn" title="Edit Operator"><i class="fas fa-edit"></i></button>
+                          <button class="action-btn delete-btn" title="Suspend Operator"><i class="fas fa-ban"></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" class="select-row"></td>
+                        <td>#OP5009</td>
+                        <td>Sharma Travels</td>
+                        <td>18</td>
+                        <td>12</td>
+                        <td>3.9 <i class="fas fa-star text-warning"></i></td>
+                        <td>08 Apr 2022</td>
+                        <td><span class="status-badge inactive">Inactive</span></td>
+                        <td class="actions-cell">
+                          <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                          <button class="action-btn edit-btn" title="Edit Operator"><i class="fas fa-edit"></i></button>
+                          <button class="action-btn active-btn" title="Activate Operator"><i class="fas fa-check-circle"></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox" class="select-row"></td>
+                        <td>#OP5008</td>
+                        <td>Neeta Travels</td>
+                        <td>25</td>
+                        <td>18</td>
+                        <td>4.1 <i class="fas fa-star text-warning"></i></td>
+                        <td>17 May 2022</td>
+                        <td><span class="status-badge confirmed">Active</span></td>
+                        <td class="actions-cell">
+                          <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                          <button class="action-btn edit-btn" title="Edit Operator"><i class="fas fa-edit"></i></button>
+                          <button class="action-btn delete-btn" title="Suspend Operator"><i class="fas fa-ban"></i></button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                
+                <div class="pagination-container">
+                  <div class="pagination-info">Showing 1 to 5 of 24 entries</div>
+                  <div class="pagination">
+                    <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i> Previous</button>
+                    <button class="pagination-btn page-number active">1</button>
+                    <button class="pagination-btn page-number">2</button>
+                    <button class="pagination-btn page-number">3</button>
+                    <button class="pagination-btn page-number">4</button>
+                    <button class="pagination-btn">Next <i class="fas fa-chevron-right"></i></button>
+                  </div>
+                  <div class="pagination-size">
+                    <label for="operators-per-page">Rows per page:</label>
+                    <select id="operators-per-page">
+                      <option value="5">5</option>
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tab-content" id="staff-tab">
+            <div class="card">
+              <div class="card-body">
+                <p>Staff Management Coming Soon</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Reports Page -->
+        <section id="reports" class="page">
+          <div class="page-header">
+            <h1>Reports</h1>
+            <div class="page-actions">
+              <div class="date-range">
+                <i class="fas fa-calendar"></i>
+                <input type="text" id="report-date-range" placeholder="Select date range">
+              </div>
+              <div class="export-actions">
+                <button class="btn-outline">
+                  <i class="fas fa-file-pdf"></i> PDF
+                </button>
+                <button class="btn-outline">
+                  <i class="fas fa-file-excel"></i> Excel
+                </button>
+                <button class="btn-outline">
+                  <i class="fas fa-print"></i> Print
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="stats-cards">
+            <div class="stat-card">
+              <div class="stat-card-content">
+                <div class="stat-card-info">
+                  <h2>Total Revenue</h2>
+                  <p class="stat-value">₹9,84,570</p>
+                  <p class="stat-change positive"><i class="fas fa-arrow-up"></i> 18.2% from last month</p>
+                </div>
+                <div class="stat-card-icon blue">
+                  <i class="fas fa-rupee-sign"></i>
+                </div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-content">
+                <div class="stat-card-info">
+                  <h2>Total Bookings</h2>
+                  <p class="stat-value">3,459</p>
+                  <p class="stat-change positive"><i class="fas fa-arrow-up"></i> 12.5% from last month</p>
+                </div>
+                <div class="stat-card-icon green">
+                  <i class="fas fa-ticket-alt"></i>
+                </div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-content">
+                <div class="stat-card-info">
+                  <h2>Avg. Occupancy</h2>
+                  <p class="stat-value">72.4%</p>
+                  <p class="stat-change positive"><i class="fas fa-arrow-up"></i> 3.8% from last month</p>
+                </div>
+                <div class="stat-card-icon purple">
+                  <i class="fas fa-users"></i>
+                </div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-content">
+                <div class="stat-card-info">
+                  <h2>Cancellation Rate</h2>
+                  <p class="stat-value">4.2%</p>
+                  <p class="stat-change negative"><i class="fas fa-arrow-down"></i> 1.5% from last month</p>
+                </div>
+                <div class="stat-card-icon orange">
+                  <i class="fas fa-ban"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="revenue-reports">
+            <div class="card">
+              <div class="card-header">
+                <h2>Revenue Trends</h2>
+                <div class="card-options">
+                  <button class="active" data-chart="revenue-monthly">Monthly</button>
+                  <button data-chart="revenue-quarterly">Quarterly</button>
+                  <button data-chart="revenue-yearly">Yearly</button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="revenueReportChart"></canvas>
+              </div>
+            </div>
+          </div>
+          
+          <div class="reports-grid">
+            <div class="card">
+              <div class="card-header">
+                <h2>Top Routes by Revenue</h2>
+              </div>
+              <div class="card-body">
+                <canvas id="topRoutesChart"></canvas>
+              </div>
+            </div>
+            
+            <div class="card">
+              <div class="card-header">
+                <h2>Booking Distribution</h2>
+              </div>
+              <div class="card-body">
+                <canvas id="bookingDistributionChart"></canvas>
+              </div>
+            </div>
+            
+            <div class="card">
+              <div class="card-header">
+                <h2>Bus Type Performance</h2>
+              </div>
+              <div class="card-body">
+                <canvas id="busTypePerformanceChart"></canvas>
+              </div>
+            </div>
+            
+            <div class="card">
+              <div class="card-header">
+                <h2>Occupancy Rates</h2>
+              </div>
+              <div class="card-body">
+                <canvas id="occupancyRatesChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Settings Page -->
+        <section id="settings" class="page">
+          <div class="page-header">
+            <h1>Settings</h1>
+          </div>
+          
+          <div class="settings-tabs">
+            <button class="tab-btn active" data-tab="general">General</button>
+            <button class="tab-btn" data-tab="payment">Payment</button>
+            <button class="tab-btn" data-tab="notification">Notifications</button>
+            <button class="tab-btn" data-tab="security">Security</button>
+            <button class="tab-btn" data-tab="api">API & Integrations</button>
+          </div>
+          
+          <div class="tab-content active" id="general-tab">
+            <div class="card">
+              <div class="card-header">
+                <h2>General Settings</h2>
+              </div>
+              <div class="card-body">
+                <form id="general-settings-form" class="settings-form">
+                  <div class="form-section">
+                    <h3>Company Information</h3>
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label for="company-name">Company Name</label>
+                        <input type="text" id="company-name" value="EasyCommute Travels Pvt. Ltd.">
+                      </div>
+                      <div class="form-group">
+                        <label for="company-email">Email Address</label>
+                        <input type="email" id="company-email" value="contact@easycommute.com">
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label for="company-phone">Contact Number</label>
+                        <input type="tel" id="company-phone" value="+91 1800-123-4567">
+                      </div>
+                      <div class="form-group">
+                        <label for="company-address">Address</label>
+                        <textarea id="company-address" rows="2">123 Business Park, Tech Lane, Bangalore, Karnataka, India - 560001</textarea>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="form-section">
+                    <h3>System Settings</h3>
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label for="date-format">Date Format</label>
+                        <select id="date-format">
+                          <option value="dd/mm/yyyy">DD/MM/YYYY</option>
+                          <option value="mm/dd/yyyy">MM/DD/YYYY</option>
+                          <option value="yyyy-mm-dd">YYYY-MM-DD</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="time-format">Time Format</label>
+                        <select id="time-format">
+                          <option value="12">12 Hours</option>
+                          <option value="24" selected>24 Hours</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label for="timezone">Timezone</label>
+                        <select id="timezone">
+                          <option value="IST" selected>Indian Standard Time (IST)</option>
+                          <option value="UTC">UTC</option>
+                          <option value="EST">Eastern Standard Time (EST)</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="currency">Currency</label>
+                        <select id="currency">
+                          <option value="INR" selected>Indian Rupee (₹)</option>
+                          <option value="USD">US Dollar ($)</option>
+                          <option value="EUR">Euro (€)</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Changes</button>
+                    <button type="reset" class="btn-outline">Reset</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tab-content" id="payment-tab">
+            <div class="card">
+              <div class="card-header">
+                <h2>Payment Settings</h2>
+              </div>
+              <div class="card-body">
+                <form id="payment-settings-form" class="settings-form">
+                  <div class="form-section">
+                    <h3>Payment Gateways</h3>
+                    <div class="payment-gateways">
+                      <div class="payment-gateway">
+                        <div class="payment-gateway-header">
+                          <div class="payment-gateway-logo">
+                            <i class="fas fa-credit-card fa-2x"></i> Razorpay
+                          </div>
+                          <div class="toggle-switch">
+                            <input type="checkbox" id="razorpay-toggle" class="toggle-input" checked>
+                            <label for="razorpay-toggle" class="toggle-label"></label>
+                          </div>
+                        </div>
+                        <div class="payment-gateway-body">
+                          <div class="form-row">
+                            <div class="form-group">
+                              <label for="razorpay-key">API Key</label>
+                              <input type="text" id="razorpay-key" value="rzp_test_XXXXXXXXXXXXXXX">
+                            </div>
+                            <div class="form-group">
+                              <label for="razorpay-secret">API Secret</label>
+                              <input type="password" id="razorpay-secret" value="XXXXXXXXXXXXXXXXXXXXX">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="payment-gateway inactive">
+                        <div class="payment-gateway-header">
+                          <div class="payment-gateway-logo">
+                            <i class="fas fa-wallet fa-2x"></i> PayTM
+                          </div>
+                          <div class="toggle-switch">
+                            <input type="checkbox" id="paytm-toggle" class="toggle-input">
+                            <label for="paytm-toggle" class="toggle-label"></label>
+                          </div>
+                        </div>
+                        <div class="payment-gateway-body">
+                          <div class="form-row">
+                            <div class="form-group">
+                              <label for="paytm-key">Merchant ID</label>
+                              <input type="text" id="paytm-key" disabled>
+                            </div>
+                            <div class="form-group">
+                              <label for="paytm-secret">Merchant Key</label>
+                              <input type="password" id="paytm-secret" disabled>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="form-section">
+                    <h3>Refund Policy</h3>
+                    <div class="form-row">
+                      <div class="form-group full-width">
+                        <label for="refund-policy">Refund Policy</label>
+                        <textarea id="refund-policy" rows="4">Cancellation within 24 hours of journey: 50% refund
+Cancellation within 48 hours of journey: 75% refund
+Cancellation before 48 hours of journey: 100% refund (minus booking fee)
+No refund after journey time has passed</textarea>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Changes</button>
+                    <button type="reset" class="btn-outline">Reset</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tab-content" id="notification-tab">
+            <div class="card">
+              <div class="card-body">
+                <p>Notification Settings Coming Soon</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tab-content" id="security-tab">
+            <div class="card">
+              <div class="card-body">
+                <p>Security Settings Coming Soon</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tab-content" id="api-tab">
+            <div class="card">
+              <div class="card-body">
+                <p>API Settings Coming Soon</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    
+    <!-- Toast/Notification Container -->
+    <div class="toast-container" id="toast-container"></div>
+    
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loading-spinner">
+      <div class="spinner"></div>
+      <p>Loading...</p>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="booking-modal-title">New Booking</h2>
+                <button id="close-booking-modal" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="booking-form">
+                    <div class="form-group">
+                        <label for="booking-route">Route</label>
+                        <select id="booking-route" required>
+                            <option value="">Select Route</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="passenger-name">Passenger Name</label>
+                        <input type="text" id="passenger-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="passenger-email">Email</label>
+                        <input type="email" id="passenger-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="passenger-phone">Phone Number</label>
+                        <input type="tel" id="passenger-phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="travel-date">Travel Date</label>
+                        <input type="date" id="travel-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="num-passengers">Number of Passengers</label>
+                        <input type="number" id="num-passengers" min="1" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="cancel-booking" class="btn secondary-btn">Cancel</button>
+                <button id="save-booking" class="btn primary-btn">Save Booking</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="{{ url_for('static', filename='bus.js') }}"></script>
+</body>
+</html>

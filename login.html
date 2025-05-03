@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login - EasyCommute</title>
+  
+  <!-- FontAwesome and Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <style>
+    /* === Your Entire Beautiful CSS (same as before) === */
+    /* I'm keeping all your original styles intact */
+    :root {
+      --primary: #3b82f6;
+      --secondary: #0ea5e9;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gray: #64748b;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: linear-gradient(45deg, #0f172a, #1e293b);
+      position: relative;
+      overflow: hidden;
+    }
+    body::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);
+      animation: rotate 20s linear infinite;
+    }
+    @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .login-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+      animation: slideUp 0.5s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .logo { text-align: center; margin-bottom: 2rem; }
+    .logo i { font-size: 3.5rem; color: var(--primary); animation: float 3s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+    .logo h1 { font-size: 2.2rem; color: white; font-weight: 800; margin-top: 0.5rem; }
+    .form-group { margin-bottom: 1.5rem; position: relative; }
+    .form-group label { display: block; margin-bottom: 0.5rem; color: white; font-weight: 500; }
+    .form-group input {
+      width: 100%; padding: 1rem; border-radius: 10px;
+      background: rgba(255,255,255,0.05); color: white; border: 2px solid rgba(255,255,255,0.1);
+    }
+    .form-group input:focus { border-color: var(--primary); background: rgba(255,255,255,0.1); }
+    .form-group i { position: absolute; right: 1rem; top: 2.8rem; color: rgba(255,255,255,0.7); }
+    .form-row { display: flex; gap: 1rem; }
+    .login-btn {
+      width: 100%; padding: 1.2rem; border-radius: 10px;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: white; font-size: 1.1rem; font-weight: 600; cursor: pointer; border: none;
+      margin-top: 1rem; text-transform: uppercase;
+    }
+    .login-btn:hover { background: linear-gradient(45deg, var(--secondary), var(--primary)); }
+    .forgot-password { text-align: right; margin-top: 0.5rem; }
+    .forgot-password a { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
+    .register-link { text-align: center; margin-top: 1.5rem; color: rgba(255,255,255,0.7); }
+    .register-link a { color: var(--primary); font-weight: 500; text-decoration: none; }
+  </style>
+
+</head>
+
+<body>
+  <div class="login-container">
+    <div class="logo">
+      <i class="fas fa-bus"></i>
+      <h1>EasyCommute</h1>
+    </div>
+
+    <!-- Corrected Form -->
+    <form action="/login" method="POST">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required placeholder="Enter your username">
+        </div>
+      
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="Enter your email">
+        </div>
+      
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required placeholder="Enter your phone">
+          </div>
+      
+          <div class="form-group">
+            <label for="altPhone">Alternative Phone</label>
+            <input type="tel" id="altPhone" name="altPhone" placeholder="Enter alternative phone">
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required placeholder="Enter your password">
+        </div>
+      
+        <button type="submit" class="login-btn">Login</button>
+      </form>      
+
+    <div class="register-link">
+      Don't have an account? <a href="#">Register here</a>
+    </div>
+  </div>
+
+  <!-- JavaScript: Password toggle only -->
+  <script>
+    function togglePassword() {
+      const passwordInput = document.getElementById('password');
+      const icon = document.querySelector('.password-toggle');
+
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      } else {
+        passwordInput.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      }
+    }
+  </script>
+  <script>
+    function redirectToBusPage(event) {
+      event.preventDefault(); // Stop form submission
+      // You can add validation or authentication checks here
+      window.location.href = "bus.html"; // Redirect after 'login'
+    }
+  </script>  
+  <script>
+    function redirectToBusPage(event) {
+      event.preventDefault(); // stop actual form submission
+      // Optional: you can validate fields here if needed
+      window.location.href = "bus.html"; // redirect to bus.html
+    }
+  </script>  
+</body>
+</html>
